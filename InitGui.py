@@ -32,11 +32,15 @@ __Status__ = 'alpha'
 __Requires__ = 'freecad 0.16.5155'
 __Communication__ = 'vv.titov@gmail.com; DeepSOIC on FreeCAD forum'
 
+import FreeCAD
+
 import lattice2_rc_minimal
 import lattice2Preferences
 
 import lattice2InjectedToolbars as TB
 TB.registerPDToolbar()
+
+FreeCAD.__unit_test__ += ["TestLattice2Gui"]
 
 class Lattice2Workbench (Workbench):
     MenuText = 'Lattice2'
@@ -81,6 +85,7 @@ class Lattice2Workbench (Workbench):
             + Lattice2.CompoundFeatures.MakeCompound.exportedCommands
             + Lattice2.CompoundFeatures.CompoundFilter.exportedCommands
             + Lattice2.CompoundFeatures.FuseCompound.exportedCommands        
+            + Lattice2.CompoundFeatures.MultiCut.exportedCommands
             + Lattice2.CompoundFeatures.Slice.exportedCommands        
             + Lattice2.CompoundFeatures.BoundBox.exportedCommands
             + Lattice2.CompoundFeatures.ShapeString.exportedCommands
@@ -97,7 +102,6 @@ class Lattice2Workbench (Workbench):
         
         cmdsGuiTools = ([]
             + Lattice2.GuiTools.Inspect.exportedCommands
-            + Lattice2.GuiTools.SubstituteObject.exportedCommands
             + Lattice2.GuiTools.ViewFromPlacement.exportedCommands
         )
         self.appendToolbar('Lattice2GuiTools', cmdsGuiTools)
